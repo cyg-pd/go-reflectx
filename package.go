@@ -5,8 +5,8 @@ import (
 	"strings"
 )
 
-func pkgSkip(level int) string {
-	pc, _, _, ok := runtime.Caller(level + 1)
+func pkgSkip(level uint) string {
+	pc, _, _, ok := runtime.Caller(int(level) + 1)
 	if !ok {
 		return ""
 	}
@@ -21,8 +21,8 @@ func pkgSkip(level int) string {
 	}
 }
 
-func PackageName(level ...int) string {
-	lvl := 0
+func PackageName(level ...uint) string {
+	var lvl uint
 	if len(level) > 0 {
 		lvl = level[0]
 	}
